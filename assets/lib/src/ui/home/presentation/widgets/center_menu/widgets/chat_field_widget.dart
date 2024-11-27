@@ -117,7 +117,7 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           constraints: BoxConstraints(
-            maxHeight: isExpanded ? maxHeight : (isMobile ? 50.h : 68.h),
+            maxHeight: isExpanded ? maxHeight : (isMobile ? 54.h : 68.h),
           ),
           decoration: BoxDecoration(
             color: Colors.white60,
@@ -134,42 +134,47 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
             textInputAction: TextInputAction.send,
             onSubmitted: (_) => _sendMessage(),
             decoration: InputDecoration(
-                hintText: "How can I help you?",
-                hintStyle: TextStyle(
+              hintText: "How can I help you?",
+              hintStyle: TextStyle(
                   color: ChatColors.flightTextColor,
                   fontSize: 15.sp,
-                ),
-                contentPadding: const EdgeInsets.only(
-                        left: 20, right: 20, top: 17, bottom: 17)
+                  fontWeight: FontWeight.w400),
+              contentPadding: ResponsiveWidgetUtils.adaptivePadding(
+                context,
+                mobileEdgeInsets: const EdgeInsets.only(
+                        left: 20, right: 20, top: 19, bottom: 17)
                     .r,
-                border: InputBorder.none,
-                suffixIcon: Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  runAlignment: WrapAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: SizedBox(
-                        height: ResponsiveWidgetUtils.isMobile2(context)
-                            ? 50.h
-                            : 60.h,
-                        child:
-                            Image.asset("assets/images/chat_field_image.png"),
-                      ),
+                tabletEdgeInsets: const EdgeInsets.only(
+                        left: 20, right: 20, top: 21, bottom: 17)
+                    .r,
+              ),
+              border: InputBorder.none,
+              suffixIcon: Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {},
+                    child: SizedBox(
+                      height: ResponsiveWidgetUtils.isMobile2(context)
+                          ? 50.h
+                          : 60.h,
+                      child: Image.asset("assets/images/chat_field_image.png"),
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: SizedBox(
-                        height: ResponsiveWidgetUtils.isMobile2(context)
-                            ? 50.h
-                            : 60.h,
-                        child:
-                            Image.asset("assets/images/video_field_image.png"),
-                      ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: SizedBox(
+                      height: ResponsiveWidgetUtils.isMobile2(context)
+                          ? 50.h
+                          : 60.h,
+                      child: Image.asset("assets/images/video_field_image.png"),
                     ),
-                  ],
-                )),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       ),

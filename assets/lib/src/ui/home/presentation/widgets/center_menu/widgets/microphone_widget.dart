@@ -65,8 +65,8 @@ class _MicrophoneWidgetState extends State<MicrophoneWidget>
                   microphoneProvider.toggleMicrophone();
                 },
                 child: Container(
-                  width: isMobile ? 45.w : 60.w,
-                  height: isMobile ? 45.h : 60.h,
+                  width: isMobile ? 50.w : 60.w,
+                  height: isMobile ? 50.h : 60.h,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: ChatColors.color5520F6,
