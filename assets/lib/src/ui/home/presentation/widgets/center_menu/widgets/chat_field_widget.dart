@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:omegaappcalling/src/support/enums.dart';
-import 'package:omegaappcalling/src/ui/resources/chat_colors.dart';
-import 'package:omegaappcalling/src/ui/support/responsive_utils/responsive_widget_utils.dart';
-import 'package:omegaappcalling/src/services/chat/chat_service.dart';
-import 'package:omegaappcalling/src/ui/chat/bloc/chat_bloc.dart';
-import 'package:omegaappcalling/src/ui/chat/bloc/events/chat_event.dart';
+import 'package:costartravel/src/support/enums.dart';
+import 'package:costartravel/src/ui/resources/chat_colors.dart';
+import 'package:costartravel/src/ui/support/responsive_utils/responsive_widget_utils.dart';
+import 'package:costartravel/src/services/chat/chat_service.dart';
+import 'package:costartravel/src/ui/chat/bloc/chat_bloc.dart';
+import 'package:costartravel/src/ui/chat/bloc/events/chat_event.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:omegaappcalling/src/ui/support/widgets/custom_message.dart';
+import 'package:costartravel/src/ui/support/widgets/custom_message.dart';
 
 class ChatFieldWidget extends StatefulWidget {
   final ChatBloc chatBloc;
@@ -113,6 +113,7 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
     final maxHeight = isMobile ? 100.h : 150.h;
     return Expanded(
       child: SlideTransition(
+
         position: _slideAnimation, // Use slide animation
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
@@ -141,11 +142,12 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
                   fontWeight: FontWeight.w400),
               contentPadding: ResponsiveWidgetUtils.adaptivePadding(
                 context,
+
                 mobileEdgeInsets: const EdgeInsets.only(
                         left: 20, right: 20, top: 19, bottom: 17)
                     .r,
                 tabletEdgeInsets: const EdgeInsets.only(
-                        left: 20, right: 20, top: 21, bottom: 17)
+                        left: 20, right: 20, top: 21, bottom: 21)
                     .r,
               ),
               border: InputBorder.none,

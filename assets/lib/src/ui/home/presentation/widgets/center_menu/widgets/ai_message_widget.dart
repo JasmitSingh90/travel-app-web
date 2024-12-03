@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:costartravel/src/ui/resources/chat_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,7 +32,6 @@ class _AiMessageWidgetState extends State<AiMessageWidget>
 
   @override
   void initState() {
-
     super.initState();
     _initializeWords();
     _setupAnimations();
@@ -39,9 +39,13 @@ class _AiMessageWidgetState extends State<AiMessageWidget>
     if (widget.useAnimation) {
       _startTyping();
     } else {
-      displayedMessage = widget.message; // Show all words at once
+      setState(() {
+        displayedMessage = widget.message; // Show all words at once
+        // Do not call _notifyTypingComplete when useAnimation is false
+      });
     }
   }
+
 
   /// Splits message into words for progressive typing
   void _initializeWords() {
@@ -87,13 +91,10 @@ class _AiMessageWidgetState extends State<AiMessageWidget>
 
             // If this is the last word, add listener to the animation
 
-            print("currentWordIndex: $currentWordIndex");
-            print("lastWordIndex: ${words.length - 1}");
             if (currentWordIndex != 0 && words.length - 1 != 0 && currentWordIndex == words.length - 1) {
               Future.delayed(const Duration(milliseconds: 500), () {
                 _notifyTypingComplete(true);
               });
-
             }
 
             currentWordIndex++;
@@ -108,15 +109,12 @@ class _AiMessageWidgetState extends State<AiMessageWidget>
     );
   }
 
-
   void _updateProgress(double value) {
     progress = value; // Update progress value
     if (widget.onTypingComplete != null) {
       widget.onTypingComplete!(false);
     }
   }
-
-
 
   /// Notifies parent widget of typing status
   void _notifyTypingComplete(bool isComplete) {
@@ -140,6 +138,7 @@ class _AiMessageWidgetState extends State<AiMessageWidget>
         setState(() {
           displayedMessage = widget.message; // Show full message instantly
           _updateProgress(1.0); // Mark as complete immediately
+          _notifyTypingComplete(true); // Notify typing complete immediately
         });
       }
     }
@@ -167,42 +166,46 @@ class _AiMessageWidgetState extends State<AiMessageWidget>
       return const SizedBox.shrink(); // Avoid rendering if message is empty
     }
 
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Sparkle icon
-          SizedBox(
-            width: isMobile ? 20.w : 25.w,
-            height: isMobile ? 20.h : 25.h,
-            child: Image.asset("assets/images/ai_sparkles.png"),
-          ),
-          SizedBox(width: 10.w),
-          Expanded(
-            child: Stack(
-              children: [
-                MarkdownBody(
-                  data: displayedMessage, // Render progressively revealed message
-                  styleSheet: MarkdownStyleSheet(
-                    p: TextStyle(fontSize: 15.sp),
-                  ),
-                ),
-                Positioned.fill(
-                  child: AnimatedOpacity(
-                    opacity: progress >= 1.0 ? 1.0 : 0.0, // Fade-in effect
-                    duration: const Duration(milliseconds: 300),
-                    child: Container(color: Colors.transparent),
-                  ),
-                ),
-              ],
+    return Padding(
+      padding:  EdgeInsets.only(left: 10.w),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Sparkle icon
+            SizedBox(
+              width: isMobile ? 20.w : 25.w,
+              height: isMobile ? 20.h : 25.h,
+              child: Image.asset("assets/images/ai_sparkles.png"),
             ),
-          ),
-        ],
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Stack(
+                children: [
+                  MarkdownBody(
+                    data: displayedMessage, // Render progressively revealed message
+                    styleSheet: MarkdownStyleSheet(
+                      p: TextStyle(fontSize: 13.sp,color: ChatColors.kHomeIconColor),
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: AnimatedOpacity(
+                      opacity: progress >= 1.0 ? 1.0 : 0.0, // Fade-in effect
+                      duration: const Duration(milliseconds: 300),
+                      child: Container(color: Colors.transparent),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+
 
 
 

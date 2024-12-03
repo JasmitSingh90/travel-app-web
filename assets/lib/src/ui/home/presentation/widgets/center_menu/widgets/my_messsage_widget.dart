@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:omegaappcalling/src/ui/resources/chat_colors.dart';
+import 'package:costartravel/src/ui/resources/chat_colors.dart';
 
 class MyMessageWidget extends StatelessWidget {
   final String message;
@@ -12,7 +12,7 @@ class MyMessageWidget extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        margin: const EdgeInsets.only(top: 30).r,
+        margin:  EdgeInsets.only(top: 30.h,right: 20.w).r,
         padding: EdgeInsets.symmetric(
           horizontal: 10.w, // Use dynamic padding values
           vertical: 12.h,
@@ -32,8 +32,8 @@ class MyMessageWidget extends StatelessWidget {
         child: Text(
           message,
           style: TextStyle(
-            fontSize: 14.2.sp,
-            height: 1.5,
+            fontSize: 15.sp,
+            // height: 1.5,
             color: ChatColors.blueTextColor,
           ),
         ),

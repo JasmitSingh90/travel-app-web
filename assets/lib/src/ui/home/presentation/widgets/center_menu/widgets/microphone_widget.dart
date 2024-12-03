@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:omegaappcalling/src/ui/home/presentation/cubit/microphone/microphone_cubit.dart';
-import 'package:omegaappcalling/src/ui/resources/chat_colors.dart';
-import 'package:omegaappcalling/src/ui/support/responsive_utils/responsive_widget_utils.dart';
+import 'package:costartravel/src/ui/home/presentation/cubit/microphone/microphone_cubit.dart';
+import 'package:costartravel/src/ui/resources/chat_colors.dart';
+import 'package:costartravel/src/ui/support/responsive_utils/responsive_widget_utils.dart';
 
 class MicrophoneWidget extends StatefulWidget {
   const MicrophoneWidget({super.key});
