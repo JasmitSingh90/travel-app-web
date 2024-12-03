@@ -49462,7 +49462,7 @@ o=o.e.b!==B.a1?o.gm(0):null
 s=!(o==null?new A.m6(!1,B.fr):o).a?5:6
 break
 case 5:s=7
-return A.r(p.qJ(A.aWG("/sounds/calling_processing.mp3")),$async$lQ)
+return A.r(p.qJ(A.aWG("assets/sounds/calling_processing.mp3")),$async$lQ)
 case 7:s=8
 return A.r(p.fC(B.vM),$async$lQ)
 case 8:s=9
@@ -49479,7 +49479,7 @@ break
 case 2:q.ay=!0
 p=$.mT().c
 s=4
-return A.r(p.qJ(A.aWG("/sounds/connected.mp3")),$async$yi)
+return A.r(p.qJ(A.aWG("assets/sounds/connected.mp3")),$async$yi)
 case 4:s=5
 return A.r(p.d0(0),$async$yi)
 case 5:case 3:return A.m(null,r)}})
