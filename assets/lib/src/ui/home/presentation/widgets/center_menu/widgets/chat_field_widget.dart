@@ -91,7 +91,7 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
 
       widget.chatBloc.isMessageSent = true;
 
-      widget.chatBloc.add(SaveMessage(
+      widget.chatBloc.add(SendMessage(
         message,
         translatedMessage: message,
         chatDataType: ChatDataType.message,
@@ -142,7 +142,6 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
                   fontWeight: FontWeight.w400),
               contentPadding: ResponsiveWidgetUtils.adaptivePadding(
                 context,
-
                 mobileEdgeInsets: const EdgeInsets.only(
                         left: 20, right: 20, top: 19, bottom: 17)
                     .r,
