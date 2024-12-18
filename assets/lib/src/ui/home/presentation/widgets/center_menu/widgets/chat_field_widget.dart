@@ -111,26 +111,31 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
   Widget build(BuildContext context) {
     final isMobile = ResponsiveWidgetUtils.isMobile2(context);
     final maxHeight = isMobile ? 100.h : 150.h;
+    final isSmallMobile = MediaQuery.of(context).size.height <= 750;
     return Expanded(
       child: SlideTransition(
-
         position: _slideAnimation, // Use slide animation
         child: AnimatedContainer(
+
           duration: const Duration(milliseconds: 300),
           constraints: BoxConstraints(
-            maxHeight: isExpanded ? maxHeight : (isMobile ? 54.h : 68.h),
+            maxHeight: isExpanded ? maxHeight : (isMobile ? 56.h : 68.h),
           ),
           decoration: BoxDecoration(
             color: Colors.white60,
-            borderRadius: BorderRadius.circular(isMobile ? 45 : 25),
+            borderRadius: BorderRadius.circular(isMobile ? 35 : 25),
           ),
           child: TextField(
+            style: TextStyle(
+                fontSize: ResponsiveWidgetUtils.getResponsiveFont(context, size: 15),
+                fontWeight: FontWeight.w400),
             enabled: !_isAnimating,
             controller: _chatTextController,
             focusNode: _focusNode,
             cursorHeight: 20.h,
             minLines: 1,
             maxLines: isExpanded ? null : 1,
+            textAlignVertical: TextAlignVertical.center,
             keyboardType: TextInputType.multiline,
             textInputAction: TextInputAction.send,
             onSubmitted: (_) => _sendMessage(),
@@ -138,12 +143,12 @@ class _ChatFieldWidgetState extends State<ChatFieldWidget>
               hintText: "How can I help you?",
               hintStyle: TextStyle(
                   color: ChatColors.flightTextColor,
-                  fontSize: 15.sp,
+                  fontSize: ResponsiveWidgetUtils.getResponsiveFont(context, size: 15),
                   fontWeight: FontWeight.w400),
               contentPadding: ResponsiveWidgetUtils.adaptivePadding(
                 context,
-                mobileEdgeInsets: const EdgeInsets.only(
-                        left: 20, right: 20, top: 19, bottom: 17)
+                mobileEdgeInsets:  EdgeInsets.only(
+                        left: 20, right: 20, top: isSmallMobile ? 8 :15, bottom: isSmallMobile ? 11 : 15)
                     .r,
                 tabletEdgeInsets: const EdgeInsets.only(
                         left: 20, right: 20, top: 21, bottom: 21)

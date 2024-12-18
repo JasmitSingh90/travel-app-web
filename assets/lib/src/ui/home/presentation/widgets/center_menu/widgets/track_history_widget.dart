@@ -37,7 +37,7 @@ class _TrackHistoryWidgetState extends State<TrackHistoryWidget>
           Text(
             "History",
             style: TextStyle(
-              fontSize: 17.sp,
+              fontSize: ResponsiveWidgetUtils.getResponsiveFont(context, size: 17),
               color: isMobile
                   ? ChatColors.flightTextColor
                   : ChatColors.kHomeIconColor,
