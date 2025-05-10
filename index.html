@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <script src="assets/packages/vad/assets/ort.js"></script>
@@ -26,15 +26,10 @@
     <link href="manifest.json" rel="manifest">
 
     <script>
-        const serviceWorkerVersion = "418644252";
+        const serviceWorkerVersion = "3720121508";
     </script>
-
-    <!-- Add Flutter CanvasKit for rendering -->
-    <!-- Only include if using CanvasKit, or fallback to HTML renderer -->
-    <script
-        src="https://www.gstatic.com/flutter-canvaskit/cf56914b326edb0ccb123ffdc60f00060bd513fa/chromium/canvaskit.js"></script>
-
-    <!-- Google Maps API -->
+    <!-- This script adds the flutter initialization JS code -->
+    <script defer src="flutter.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3L_Q5K4H_gMo4_6zxL_XYObKMEQc33PM"></script>
     <script>
         document.addEventListener('contextmenu', (e) => {
