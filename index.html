@@ -9,7 +9,7 @@
 
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-    <meta content="A new Flutter project." name="description">
+    <meta content="CoStar Travel" name="description">
 
     <!-- iOS meta tags & icons -->
     <meta content="719221376180-do7vc0l2s5so64anp2sop3o7gb80drtk.apps.googleusercontent.com"
@@ -19,6 +19,11 @@
     <meta content="costartravel" name="apple-mobile-web-app-title">
     <link href="icons/Icon-192.png" rel="apple-touch-icon">
 
+    <!-- Set theme color for Safari (iOS and macOS) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#ffffff">
+
     <!-- Favicon -->
     <link href="favicon.png" rel="icon" type="image/png" />
 
@@ -26,7 +31,7 @@
     <link href="manifest.json" rel="manifest">
 
     <script>
-        const serviceWorkerVersion = "2695832169";
+        const serviceWorkerVersion = {{ flutter_service_worker_version }};
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script defer src="flutter.js"></script>
