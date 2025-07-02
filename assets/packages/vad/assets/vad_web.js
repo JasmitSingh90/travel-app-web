@@ -5,7 +5,6 @@ function logMessage(message) {
 }
 
 let isListening = false;
-let isPaused = false;
 let vadInstance = null;
 
 function startListeningImpl(
@@ -20,23 +19,9 @@ function startListeningImpl(
   baseAssetPath,
   onnxWASMBasePath
 ) {
-  // If already listening and not paused, return early
-  if (isListening && !isPaused) return;
-
-  // If we have an existing vadInstance and are paused, just resume
-  if (vadInstance && isPaused) {
-    console.log("Resuming VAD from paused state");
-    vadInstance.start();
-    isListening = true;
-    isPaused = false;
-    return;
-  }
-
-  // If we already have a vadInstance but not paused, return early
-  if (vadInstance) return;
+  if (isListening || vadInstance) return;
 
   isListening = true;
-  isPaused = false;
   // Initialize and start VAD service
   async function initializeVAD() {
     try {
@@ -76,23 +61,13 @@ function startListeningImpl(
 }
 
 function stopListeningImpl() {
-  if (vadInstance !== null) {
+  if (vadInstance) {
+    vadInstance.pause();
     vadInstance.destroy();
-    console.log("VAD instance stopped");
     isListening = false;
-    isPaused = false;
     vadInstance = null;
   } else {
     onErrorCallback("VAD instance is not initialized");
-  }
-}
-
-function pauseListeningImpl() {
-  if (vadInstance !== null) {
-    vadInstance.pause();
-    console.log("VAD instance paused");
-    isListening = false;
-    isPaused = true;
   }
 }
 
