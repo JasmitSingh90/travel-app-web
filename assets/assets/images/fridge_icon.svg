@@ -1,0 +1,13 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="fridge 1" clip-path="url(#clip0_8419_70658)">
+<path id="Vector" d="M3.33203 3.33333C3.33203 2.97971 3.47251 2.64057 3.72256 2.39052C3.9726 2.14048 4.31174 2 4.66536 2H11.332C11.6857 2 12.0248 2.14048 12.2748 2.39052C12.5249 2.64057 12.6654 2.97971 12.6654 3.33333V12.6667C12.6654 13.0203 12.5249 13.3594 12.2748 13.6095C12.0248 13.8595 11.6857 14 11.332 14H4.66536C4.31174 14 3.9726 13.8595 3.72256 13.6095C3.47251 13.3594 3.33203 13.0203 3.33203 12.6667V3.33333Z" stroke="#35385A" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M3.33594 6.66797H12.6693" stroke="#35385A" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M6 8.66797V10.668" stroke="#35385A" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M6 4V4.66667" stroke="#35385A" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_8419_70658">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>
