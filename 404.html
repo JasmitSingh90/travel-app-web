@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <base href="/">
-    <!--    <base href="/travel-app-web/">-->
+    <base href="/travel-app-web/">
+    <!-- <base href="/travel-app-web-dev/"> -->
 
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
     <meta content="CoStar Travel" name="description">
 
-    <meta content="719221376180-do7vc0l2s5so64anp2sop3o7gb80drtk.apps.googleusercontent.com"
+    <meta content="173702795602-9f1m0hd81bu18ai40katllskihaimlve.apps.googleusercontent.com"
         name="google-signin-client_id">
 
     <!-- iOS meta tags & icons -->
@@ -29,6 +29,14 @@
     <title>CO* Travel</title>
     <link href="manifest.json" rel="manifest">
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
+    
+    <!-- Google APIs -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://apis.google.com/js/gapi.js"></script>
+
     <script>
         const serviceWorkerVersion = '{{ flutter_service_worker_version }}';
     </script>
@@ -45,7 +53,7 @@
     <script defer src="assets/packages/vad/assets/ort.js"></script>
     <script defer src="assets/packages/vad/assets/bundle.min.js"></script>
     <script defer src="assets/packages/vad/assets/vad_web.js"></script>
-    <script async src="flutter_bootstrap.js?v=77"></script>
+    <script async src="flutter_bootstrap.js?v=82"></script>
 </body>
 
 </html>
