@@ -26,34 +26,149 @@
     <!-- Favicon -->
     <link href="favicon.png" rel="icon" type="image/png" />
 
+    <!-- Preload splash images with mobile priority -->
+    <link as="image" href="assets/assets/images/login_landing_bg.png" media="(max-width: 768px)" rel="preload">
+    <link as="image" href="assets/assets/images/login_web.webp" media="(min-width: 769px)" rel="preload">
+
     <title>CO* Travel</title>
     <link href="manifest.json" rel="manifest">
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-auth-compat.js"></script>
-    
-    <!-- Google APIs -->
-    <script src="https://apis.google.com/js/api.js"></script>
-    <script src="https://apis.google.com/js/gapi.js"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        #loading-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #616161;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.2em;
+            animation: pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #loading-text {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #loading-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
 
     <script>
         const serviceWorkerVersion = '{{ flutter_service_worker_version }}';
     </script>
+
     <!-- This script adds the flutter initialization JS code -->
     <script defer src="flutter.js"></script>
     <script>
         document.addEventListener('contextmenu', (e) => {
             e.preventDefault();
         });
+
+        function hideSplashScreen() {
+            const splashScreen = document.getElementById('splash-screen');
+            if (splashScreen) {
+                splashScreen.classList.add('hidden');
+                setTimeout(() => {
+                    splashScreen.remove();
+                }, 500); // Wait for transition to finish
+            }
+        }
+
+        function preloadImages() {
+            // Images are now preloaded via link tags in head
+            // This function kept for compatibility but simplified
+            const mobileImg = new Image();
+            const desktopImg = new Image();
+            mobileImg.src = 'assets/assets/images/login_landing_bg.png';
+            desktopImg.src = 'assets/assets/images/login_web.webp';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // More robust mobile detection
+            const isMobile = window.innerWidth <= 768 ||
+                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                ('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0);
+
+            // Only switch to desktop if clearly on desktop
+            if (!isMobile && window.innerWidth > 768) {
+                const splashScreen = document.getElementById('splash-screen');
+                if (splashScreen) {
+                    splashScreen.style.backgroundImage = "url('assets/assets/images/login_web.webp')";
+                    console.log('Switched to desktop background');
+                }
+            } else {
+                console.log('Keeping mobile background, isMobile:', isMobile, 'width:', window.innerWidth);
+            }
+
+            preloadImages();
+
+            window.addEventListener('flutter-first-frame', hideSplashScreen);
+
+            setTimeout(hideSplashScreen, 10000);
+        });
     </script>
 </head>
 
 <body>
+    <!-- Splash Screen with inline mobile-first styling to prevent any flash -->
+    <div id="splash-screen" style="
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: -webkit-fill-available;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('assets/assets/images/login_landing_bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden;
+">
+        <div id="loading-text">LOADING...</div>
+    </div>
+
     <script defer src="assets/packages/vad/assets/ort.js"></script>
     <script defer src="assets/packages/vad/assets/bundle.min.js"></script>
     <script defer src="assets/packages/vad/assets/vad_web.js"></script>
-    <script async src="flutter_bootstrap.js?v=81"></script>
+    <script async src="flutter_bootstrap.js?v=84"></script>
 </body>
 
 </html>
